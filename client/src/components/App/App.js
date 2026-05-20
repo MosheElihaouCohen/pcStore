@@ -1,7 +1,8 @@
 import './App.css';
 import React, {useEffect, useState} from 'react';
-import ItemList from './ItemList';
-import { LanguageContext } from './utils';
+import { LanguageContext, products } from '../../utils';
+import Header from '../Header/Header';
+import Section from '../Section/Section';
 
 
 
@@ -9,7 +10,6 @@ import { LanguageContext } from './utils';
 
 function App() {
    const [userData, setUserData] = useState({});
-
 
 
   useEffect(() =>{
@@ -24,14 +24,8 @@ function App() {
 
   return (
     <LanguageContext value="he">
-    <div className="App">
-      <header className="App-header">
-        Hello {userData.name}
-        <div>Email: {userData.email}</div>
-        <div>City: {userData.address.city}</div>
-        <ItemList />
-      </header>
-    </div>
+        <Header />
+        <Section title="Offers" items={products} classTitle="offers-section" isSlider={true}/>
     </LanguageContext>
   );
 }
