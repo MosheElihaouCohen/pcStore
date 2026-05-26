@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Nav from '../Nav/Nav'
 
-export default function Header() {
+export default function Header(props) {
+  const inputRef = useRef();
+
+
+  const onSubmitSearch = (event) =>{
+          event.preventDefault();
+          props.searchFunction(inputRef.current.value.toLowerCase());
+  }
+
   return (
     <header className="relative z-10 shadow-[0_2px_10px_rgba(131,125,125,0.50)]">
     <div className="hidden bg-primary-700 sm:flex">
@@ -55,10 +63,11 @@ export default function Header() {
         </div>
         <div
           className="header-search order-3 col-span-4 mt-[10px] hidden self-center transition-all duration-300 lg:order-2 lg:col-span-6 lg:mt-0 lg:block">
-          <form className="search" action="#">
+          <form className="search" action="#" onSubmit={onSubmitSearch}>
             <div
               className="flex h-[40px] overflow-hidden rounded-[50px] bg-primary-600/40">
               <input
+                ref={inputRef}
                 className="search w-full border-none bg-transparent py-[5px] pl-5 text-white placeholder-slate-300 focus:border-none focus:ring-0 focus:ring-transparent"
                 type="search"
                 placeholder="Search..." />

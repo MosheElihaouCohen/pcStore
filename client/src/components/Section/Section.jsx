@@ -12,7 +12,14 @@ import 'swiper/css';
 */
 
 export default function Section(props) {
-    console.log("products",  props.items);
+  
+  if(props.isSearch && !props.term){
+    return null;
+  }
+  
+  const searchBody = !props.items.length && props.isSearch ? 'No Products found...' : '';
+ 
+ 
   return (
     <div className={`${props.classTitle} container mx-auto my-5 px-2 sm:px-8`}>
     <div
@@ -22,11 +29,14 @@ export default function Section(props) {
         {props.title}
       </h1>
     </div>
-    {props.isSlider && props.items.length && (<Swiper
+    {searchBody && <p>{searchBody}</p>}
+    {props.isSlider && props.items.length > 0 && (<Swiper
       spaceBetween={50}
       slidesPerView={3}
       onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
+      onSwiper={(swiper) => {
+          // console.log(swiper)
+      }}
     >
       {props.items.map(item =>  <SwiperSlide key={item.productId} className="swiper-slide h-auto"> <ProductCard data={item} /></SwiperSlide>)}
     </Swiper>)}        
