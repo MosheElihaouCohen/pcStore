@@ -1,4 +1,4 @@
-# Starting the project
+# Starting the project - moshe cohen
 
 1. create new project in github and clone it to your pc
 2. create react install inside the project in the folder client
